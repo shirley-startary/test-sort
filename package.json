@@ -1,0 +1,21 @@
+{
+  "name": "testing",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test/data.spec.js"
+  },
+  "keywords": [
+    "mocha",
+    "pruebas",
+    "unitarias"
+  ],
+  "author": "shirley silvana",
+  "license": "MIT",
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "jest": "^24.1.0",
+    "mocha": "^5.2.0"
+  }
+}

@@ -1,5 +1,5 @@
 global.window = global;
-global.assert = require('chai').assert;
+global.assert = require('chai').expect;
 require('../src/data');
 
 const dataEstudent = [{
@@ -24,14 +24,16 @@ const dataEstudent = [{
     }
 ]
 
-describe("Sort", function () {
-    const sort = data.sort(dataEstudent, "nombre", "ASC");
-    const processedASC = data.sort(dataEstudent, 'nombre', 'ASC');
-    const processedDESC = data.sort(dataEstudent, 'nombre', 'DSC');
-    console.log(processedASC);
+describe("Sort", () => {
+    console.log(data);
 
-    it("Debeía ser una función", function () {
-        assert.equal(typeof data.sort, "function");
+    const sort = data.sort(dataEstudent, "nombre", "ASC");
+    const sortASCNombre = data.sort(dataEstudent, 'nombre', 'ASC');
+    const sortDESCNombre = data.sort(dataEstudent, 'nombre', 'DESC');
+    const sortASCEdad = data.sort(dataEstudent, 'Edad', 'ASC');
+    const sortDESCEdad = data.sort(dataEstudent, 'Edad', 'DESx')
+    it("Debeía ser una función", () => {
+        assert.isFunction(data.sort, 'function');
     });
     it("Debería return data ordenada si le mando data Estudent", () => {
         sort.forEach((item, i) => {
@@ -40,16 +42,19 @@ describe("Sort", function () {
         })
     });
     it('debería retornar arreglo de estudiantes ordenado por nombre ASC', () => {
-        assert.equal(processedASC[0].nombre, 'Dení');
-        assert.equal(processedASC[3].nombre, 'Silvana');
+        assert.equal(sortASCNombre[0].nombre, 'Dení');
+        assert.equal(sortASCNombre[3].nombre, 'Silvana');
     });
-    it('Debeía retornar arreglo de estudiantes ordenado por nombre DSC', () => {
-        assert.equal(processedDESC[0].nombre, 'Silvana');
-        assert.equal(processedDESC[3].nombre, 'Dení');
+    it('Debeía retornar arreglo de estudiantes ordenado por nombre DESC', () => {
+        assert.equal(sortDESCNombre[0].nombre, 'Silvana');
+        assert.equal(sortDESCNombre[3].nombre, 'Dení');
     });
-    it('Ordenar por edad', () => {
-        assert.equal(processedDESC[0].edad, 35);
-        assert.equal(processedDESC[3].nombre, 25);
-    })
-
-})
+    it('Debería retornar arreglo de estudiantes ordenado por edad ASC', () => {
+        assert.equal(sortASCEdad[0].edad, 25);
+        assert.equal(sortASCEdad[3].edad, 35);
+    });
+    it('Debería retornar arreglo de estudiantes ordenado por edad DESC', () => {
+        assert.equal(sortDESCEdad[0].edad, 35);
+        assert.equal(sortDESCEdad[3].edad, 25);
+    });
+});
